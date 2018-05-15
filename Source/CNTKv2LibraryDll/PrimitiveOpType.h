@@ -102,7 +102,7 @@ namespace CNTK
         LatticeSequenceWithSoftmax = 90,
         Cast = 91,
         EyeLikeOp = 92,
-        QuantizedProxyTimes = 92,
+        QuantizedProxyTimes = 93,
 
         // New op types should only be appended to the end of this list 
         UnknownOP
