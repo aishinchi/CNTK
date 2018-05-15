@@ -1694,6 +1694,12 @@ namespace CNTK
         additionalProperties[PrimitiveFunction::AttributeNameOutputSparse] = isOutputSparse;
         return UnaryOp(PrimitiveOpType::EyeLikeOp, operand, std::move(additionalProperties), name);
     }
+    
+    FunctionPtr QuantizedProxyTimes(const Variable& v1, const Variable& v2, const Variable& v3, const Variable& v4, const std::wstring& name)
+    {
+        std::vector<Variable> operands{ v1, v2, v3, v4 };
+        return AsComposite(MakeSharedObject<PrimitiveFunction>(PrimitiveOpType::QuantizedProxyTimes, operands, Dictionary(), name));
+    }
 
     std::vector<Variable> AutoBroadcastSequence(PrimitiveOpType op, const Variable& left, const Variable& right, bool autoBroadcast)
     {

@@ -118,6 +118,7 @@ namespace CNTK
         {PrimitiveOpType::Squeeze, L"Squeeze"},
         {PrimitiveOpType::Cast, L"Cast" },
         { PrimitiveOpType::EyeLikeOp, L"EyeLikeOp" },
+        {PrimitiveOpType::QuantizedProxyTimes, L"QuantizedProxyTimes" },
     };
 
     inline const std::wstring& PrimitiveOpTypeName(PrimitiveOpType opType)
@@ -797,6 +798,12 @@ namespace CNTK
         static std::vector<Axis> GetOutputDynamicAxes(PrimitiveOpType op, std::vector<Variable>& inputs, PrimitiveFunction* owner, Dictionary& functionConfig);
 
         void InferOutputs(std::vector<Variable>& outputs) override;
+
+        bool IsSimpleInferOutputOp()
+        {
+            return m_op == PrimitiveOpType::NoOp ||
+                m_op == PrimitiveOpType::QuantizedProxyTimes;
+        }
 
         FunctionPtr Clone(const std::vector<Variable>& clonedInputs) override
         {
